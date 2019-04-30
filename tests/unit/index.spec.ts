@@ -52,6 +52,14 @@ describe('useReducer', () => {
       expect(state).toEqual(testState);
       expect(typeof dispatch).toBe('function');
     });
+
+    it('runs initial action', () => {
+      const [state] = useReducer(testReducer, initialTestState, {
+        type: 'increment',
+      });
+
+      expect(state).toEqual({ count: 1 });
+    });
   });
 
   describe('dispatch', () => {
