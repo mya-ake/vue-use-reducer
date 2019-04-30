@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "lib": ["es5", "dom"],
+    "lib": ["es2017", "dom"],
     "types": ["jest"],
     "declaration": true,
     "outDir": "./dist",

@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import { Dispatch } from '@/index';
+import { VueUseReducer } from '@/index';
 import { CounterState, CounterAction } from '@fixtures/store/counter';
 
 export const createTestComponent = ([state, dispatch]: [
   CounterState,
-  Dispatch<CounterAction>
+  VueUseReducer.Dispatch<CounterAction>
 ]) => {
   return Vue.extend({
     template: `

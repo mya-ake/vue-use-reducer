@@ -1,4 +1,4 @@
-import { useReducer, Reducer, Action } from '@/index';
+import { useReducer, VueUseReducer } from '@/index';
 import cloneDeepWith from 'lodash.clonedeepwith';
 
 type TestState = {
@@ -7,7 +7,7 @@ type TestState = {
 
 type TestActionTypes = 'increment';
 
-interface TestAction extends Action {
+interface TestAction extends VueUseReducer.Action {
   type: TestActionTypes;
 }
 
@@ -20,12 +20,17 @@ const testState: TestState = {
 };
 let initialTestState: TestState;
 
-const testReducer: Reducer<TestState, TestAction> = (state, action) => {
+const testReducer: VueUseReducer.Reducer<TestState, TestAction> = (
+  state,
+  action,
+) => {
   mockReducer(cloneDeepWith(state), action);
   switch (action.type) {
     case 'increment':
-      state.count++;
-      break;
+      return {
+        ...state,
+        count: state.count + 1,
+      };
   }
 };
 

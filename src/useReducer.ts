@@ -1,14 +1,21 @@
 import Vue from 'vue';
-import { Action, Dispatch, Reducer } from './type';
+import cloneDeepWith from 'lodash.clonedeepwith';
+import { VueUseReducer } from './type';
 
-export function useReducer<S, A extends Action>(
-  reducer: Reducer<S, A>,
+export function useReducer<
+  S extends VueUseReducer.State,
+  A extends VueUseReducer.Action
+>(
+  reducer: VueUseReducer.Reducer<S, A>,
   initialState: S,
   initialAction?: A,
-): [S, Dispatch<A>] {
+): [S, VueUseReducer.Dispatch<A>] {
   const state: S = Vue.observable(initialState);
-  const dispatch: Dispatch<A> = action => {
-    reducer(state, action);
+  const dispatch: VueUseReducer.Dispatch<A> = action => {
+    const newState = reducer(cloneDeepWith(state), action);
+    Object.entries(newState).forEach(([key, value]: [string, unknown]) => {
+      state[key] = value;
+    });
   };
 
   if (initialAction != null) {
