@@ -1,6 +1,6 @@
 {
   "name": "vue-use-reducer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "useReducer for Vue.js.",
   "main": "dist/index.common.js",
   "unpkg": "dist/index.umd.js",
