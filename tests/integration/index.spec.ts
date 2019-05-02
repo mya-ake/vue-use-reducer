@@ -2,16 +2,16 @@ import Vue from 'vue';
 import { shallowMount, Wrapper } from '@vue/test-utils';
 
 import { createCounterStore } from '@fixtures/store/counter';
-import { createTestComponent } from '@fixtures/components/TestComponent';
+import { createCounterComponent } from '@fixtures/components/CounterComponent';
 
-describe('TestComponent', () => {
+describe('CounterComponent', () => {
   let wrapper: Wrapper<Vue>;
-  let countText: Wrapper<Vue>;
+  let countTextWrapper: Wrapper<Vue>;
 
   beforeEach(() => {
-    const TestComponent = createTestComponent(createCounterStore());
-    wrapper = shallowMount(TestComponent);
-    countText = wrapper.find('#count');
+    const CounterComponent = createCounterComponent(createCounterStore());
+    wrapper = shallowMount(CounterComponent);
+    countTextWrapper = wrapper.find('#count');
   });
 
   describe('mount', () => {
@@ -20,7 +20,7 @@ describe('TestComponent', () => {
     });
 
     it('count is 0', () => {
-      expect(countText.text()).toBe('0');
+      expect(countTextWrapper.text()).toBe('0');
     });
   });
 
@@ -28,13 +28,13 @@ describe('TestComponent', () => {
     it('increment', () => {
       const button = wrapper.find('#button-increment');
       button.trigger('click');
-      expect(countText.text()).toBe('1');
+      expect(countTextWrapper.text()).toBe('1');
     });
 
     it('decrement', () => {
       const button = wrapper.find('#button-decrement');
       button.trigger('click');
-      expect(countText.text()).toBe('-1');
+      expect(countTextWrapper.text()).toBe('-1');
     });
 
     it('increment, decrement', () => {
@@ -42,7 +42,7 @@ describe('TestComponent', () => {
       const decrementButton = wrapper.find('#button-decrement');
       incrementButton.trigger('click');
       decrementButton.trigger('click');
-      expect(countText.text()).toBe('0');
+      expect(countTextWrapper.text()).toBe('0');
     });
   });
 });

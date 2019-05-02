@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { VueUseReducer } from '@/index';
 import { CounterState, CounterAction } from '@fixtures/store/counter';
 
-export const createTestComponent = ([
+export const createCounterComponent = ([
   state,
   dispatch,
 ]: VueUseReducer.ReturnValue<CounterState, CounterAction>) => {
