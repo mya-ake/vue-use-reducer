@@ -1,10 +1,14 @@
 {
   "name": "vue-use-reducer",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "description": "useReducer for Vue.js.",
   "main": "dist/index.common.js",
   "unpkg": "dist/index.umd.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/mya-ake/vue-use-reducer.git",
+  "bugs": {
+    "url": "https://github.com/mya-ake/vue-use-reducer/issues"
+  },
   "author": "mya-ake <make.app.ts@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -12,8 +16,11 @@
     "build": "run-s build:*",
     "build:cjs": "BUILD_FORMAT=cjs rollup --config rollup.config.js",
     "build:umd": "BUILD_FORMAT=umd rollup --config rollup.config.js",
+    "lint": "eslint . --ext .ts,.js",
     "test:unit": "NODE_ENV=test jest --config ./tests/unit/jest.config.js",
-    "test:integration": "NODE_ENV=test jest --config ./tests/integration/jest.config.js"
+    "test:integration": "NODE_ENV=test jest --config ./tests/integration/jest.config.js",
+    "prerelease": "run-s test:* build",
+    "release": "np"
   },
   "dependencies": {
     "lodash.clonedeepwith": "^4.5.0",
@@ -28,6 +35,7 @@
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.7.1",
+    "np": "^5.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.17.0",
     "rimraf": "^2.6.3",
@@ -37,5 +45,13 @@
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue.js",
+    "hooks",
+    "useReducer"
+  ]
 }
