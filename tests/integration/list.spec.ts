@@ -23,12 +23,24 @@ describe('ListComponent', () => {
   });
 
   describe('action', () => {
-    it('add', () => {
+    it('push', () => {
       // @ts-ignore 2339
-      wrapper.vm.add('test');
+      wrapper.vm.push('test');
       const listItemWrapper = wrapper.findAll('li');
       expect(listItemWrapper).toHaveLength(1);
       expect(listItemWrapper.at(0).text()).toBe('test');
+    });
+
+    it('pop', () => {
+      // @ts-ignore 2339
+      wrapper.vm.push('test1');
+      // @ts-ignore 2339
+      wrapper.vm.push('test2');
+      // @ts-ignore 2339
+      wrapper.vm.pop();
+      const listItemWrapper = wrapper.findAll('li');
+      expect(listItemWrapper).toHaveLength(1);
+      expect(listItemWrapper.at(0).text()).toBe('test1');
     });
   });
 });

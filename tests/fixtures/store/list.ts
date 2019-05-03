@@ -5,14 +5,14 @@ export interface ListState extends VueUseReducer.State {
   list: string[];
 }
 
-type AddAction = {
-  type: 'add';
+type PushAction = {
+  type: 'push';
   payload: {
     text: string;
   };
 };
 
-export type ListAction = AddAction;
+export type ListAction = PushAction | { type: 'pop' };
 
 const initialState: ListState = {
   list: [],
@@ -23,13 +23,18 @@ const reducer: VueUseReducer.Reducer<ListState, ListAction> = (
   action,
 ) => {
   switch (action.type) {
-    case 'add': {
+    case 'push': {
       const { payload } = action;
       return {
         ...state,
         list: state.list.concat(payload.text),
       };
     }
+    case 'pop':
+      return {
+        ...state,
+        list: state.list.slice(0, -1),
+      };
   }
 };
 

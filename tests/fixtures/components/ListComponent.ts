@@ -21,8 +21,12 @@ export const createListComponent = ([
     },
 
     methods: {
-      add(text: string) {
-        dispatch({ type: 'add', payload: { text } });
+      push(text: string) {
+        dispatch({ type: 'push', payload: { text } });
+      },
+
+      pop() {
+        dispatch({ type: 'pop' });
       },
     },
   });
