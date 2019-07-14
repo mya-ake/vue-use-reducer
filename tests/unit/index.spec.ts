@@ -1,5 +1,5 @@
 import { useReducer, VueUseReducer } from '@/index';
-import cloneDeepWith from 'lodash.clonedeepwith';
+import { cloneDeepWith } from 'lodash';
 
 type TestState = {
   count: number;
