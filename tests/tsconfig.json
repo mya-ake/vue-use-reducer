@@ -8,5 +8,5 @@
       "@fixtures/*": ["tests/fixtures/*"]
     }
   },
-  "include": ["./integration/**/*.ts"],
+  "include": ["./integration/**/*.ts", "./../src/**/*.ts"],
 }
