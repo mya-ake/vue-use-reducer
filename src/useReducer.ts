@@ -10,11 +10,11 @@ export function useReducer<
   initialState: S,
   initialAction?: A,
 ): VueUseReducer.ReturnValue<S, A> {
-  const state: S = Vue.observable(initialState);
+  const state = Vue.observable(initialState);
   const dispatch: VueUseReducer.Dispatch<A> = action => {
     const newState = reducer(cloneDeepWith(state), action);
-    Object.entries(newState).forEach(([key, value]: [string, unknown]) => {
-      state[key] = value;
+    Object.keys(newState).forEach((key: keyof S) => {
+      state[key] = newState[key];
     });
   };
 
