@@ -1,11 +1,20 @@
-import Vue from 'vue';
+import Vue, { VueConstructor } from 'vue';
 import { VueUseReducer } from '@/index';
 import { CounterState, CounterAction } from '@fixtures/store/counter';
+
+export type CounterComponent = {
+  count: number;
+  increment(): void;
+  decrement(): void;
+} & Record<never, any> &
+  Vue;
 
 export const createCounterComponent = ([
   state,
   dispatch,
-]: VueUseReducer.ReturnValue<CounterState, CounterAction>) => {
+]: VueUseReducer.ReturnValue<CounterState, CounterAction>): VueConstructor<
+  CounterComponent
+> => {
   return Vue.extend({
     template: `
   <div>
@@ -22,11 +31,11 @@ export const createCounterComponent = ([
 
     methods: {
       increment() {
-        dispatch({ type: 'increment' });
+        dispatch({ type: 'INCREMENT' });
       },
 
       decrement() {
-        dispatch({ type: 'decrement' });
+        dispatch({ type: 'DECREMENT' });
       },
     },
   });

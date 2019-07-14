@@ -1,36 +1,35 @@
-import cloneDeepWith from 'lodash.clonedeepwith';
 import { useReducer, VueUseReducer } from '@/index';
 
-export interface ListState extends VueUseReducer.State {
+export type ListState = {
   list: string[];
-}
+};
 
 type PushAction = {
-  type: 'push';
+  type: 'PUSH';
   payload: {
     text: string;
   };
 };
 
-export type ListAction = PushAction | { type: 'pop' };
+export type ListAction = PushAction | { type: 'POP' };
 
-const initialState: ListState = {
+const createInitialState = (): ListState => ({
   list: [],
-};
+});
 
 const reducer: VueUseReducer.Reducer<ListState, ListAction> = (
   state,
   action,
 ) => {
   switch (action.type) {
-    case 'push': {
+    case 'PUSH': {
       const { payload } = action;
       return {
         ...state,
         list: state.list.concat(payload.text),
       };
     }
-    case 'pop':
+    case 'POP':
       return {
         ...state,
         list: state.list.slice(0, -1),
@@ -39,5 +38,5 @@ const reducer: VueUseReducer.Reducer<ListState, ListAction> = (
 };
 
 export const createListStore = () => {
-  return useReducer(reducer, cloneDeepWith(initialState));
+  return useReducer(reducer, createInitialState());
 };

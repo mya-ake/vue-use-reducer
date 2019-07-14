@@ -2,10 +2,13 @@ import Vue from 'vue';
 import { shallowMount, Wrapper } from '@vue/test-utils';
 
 import { createCounterStore } from '@fixtures/store/counter';
-import { createCounterComponent } from '@fixtures/components/CounterComponent';
+import {
+  createCounterComponent,
+  CounterComponent as CounterComponentType,
+} from '@fixtures/components/CounterComponent';
 
 describe('CounterComponent', () => {
-  let wrapper: Wrapper<Vue>;
+  let wrapper: Wrapper<CounterComponentType>;
   let countTextWrapper: Wrapper<Vue>;
 
   beforeEach(() => {

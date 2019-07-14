@@ -5,9 +5,9 @@ type TestState = {
   count: number;
 };
 
-type TestActionTypes = 'increment';
+type TestActionTypes = 'INCREMENT';
 
-interface TestAction extends VueUseReducer.Action {
+interface TestAction {
   type: TestActionTypes;
 }
 
@@ -26,7 +26,7 @@ const testReducer: VueUseReducer.Reducer<TestState, TestAction> = (
 ) => {
   mockReducer(cloneDeepWith(state), action);
   switch (action.type) {
-    case 'increment':
+    case 'INCREMENT':
       return {
         ...state,
         count: state.count + 1,
@@ -35,7 +35,6 @@ const testReducer: VueUseReducer.Reducer<TestState, TestAction> = (
 };
 
 /** tests */
-
 beforeEach(() => {
   initialTestState = cloneDeepWith(testState);
 });
@@ -53,9 +52,15 @@ describe('useReducer', () => {
       expect(typeof dispatch).toBe('function');
     });
 
+    it('sets initial state', () => {
+      const [state] = useReducer(testReducer, { count: 1 });
+
+      expect(state).toEqual({ count: 1 });
+    });
+
     it('runs initial action', () => {
       const [state] = useReducer(testReducer, initialTestState, {
-        type: 'increment',
+        type: 'INCREMENT',
       });
 
       expect(state).toEqual({ count: 1 });
@@ -65,14 +70,14 @@ describe('useReducer', () => {
   describe('dispatch', () => {
     it('runs reducer', () => {
       const [_, dispatch] = useReducer(testReducer, initialTestState);
-      dispatch({ type: 'increment' });
+      dispatch({ type: 'INCREMENT' });
 
-      expect(mockReducer).toBeCalledWith({ count: 0 }, { type: 'increment' });
+      expect(mockReducer).toBeCalledWith({ count: 0 }, { type: 'INCREMENT' });
     });
 
     it('state.count is incremented', () => {
       const [state, dispatch] = useReducer(testReducer, initialTestState);
-      dispatch({ type: 'increment' });
+      dispatch({ type: 'INCREMENT' });
 
       expect(state.count).toBe(1);
     });

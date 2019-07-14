@@ -1,31 +1,30 @@
-import cloneDeepWith from 'lodash.clonedeepwith';
 import { useReducer, VueUseReducer } from '@/index';
 
-export interface CounterState extends VueUseReducer.State {
+export type CounterState = {
   count: number;
-}
-
-type ActionTypes = 'increment' | 'decrement';
-
-export interface CounterAction extends VueUseReducer.Action {
-  type: ActionTypes;
-}
-
-const initailState: CounterState = {
-  count: 0,
 };
+
+type ActionTypes = 'INCREMENT' | 'DECREMENT';
+
+export type CounterAction = {
+  type: ActionTypes;
+};
+
+const createInitailState = (): CounterState => ({
+  count: 0,
+});
 
 const reducer: VueUseReducer.Reducer<CounterState, CounterAction> = (
   state,
   action,
 ) => {
   switch (action.type) {
-    case 'increment':
+    case 'INCREMENT':
       return {
         ...state,
         count: state.count + 1,
       };
-    case 'decrement':
+    case 'DECREMENT':
       return {
         ...state,
         count: state.count - 1,
@@ -34,5 +33,5 @@ const reducer: VueUseReducer.Reducer<CounterState, CounterAction> = (
 };
 
 export const createCounterStore = () => {
-  return useReducer(reducer, cloneDeepWith(initailState));
+  return useReducer(reducer, createInitailState());
 };

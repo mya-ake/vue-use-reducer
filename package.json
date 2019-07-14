@@ -17,9 +17,10 @@
     "build:cjs": "BUILD_FORMAT=cjs rollup --config rollup.config.js",
     "build:umd": "BUILD_FORMAT=umd rollup --config rollup.config.js",
     "lint": "eslint . --ext .ts,.js",
+    "test": "run-s test:*",
     "test:unit": "NODE_ENV=test jest --config ./tests/unit/jest.config.js",
     "test:integration": "NODE_ENV=test jest --config ./tests/integration/jest.config.js",
-    "prerelease": "run-s test:* build",
+    "prerelease": "run-s test build",
     "release": "np"
   },
   "dependencies": {
