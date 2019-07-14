@@ -1,9 +1,9 @@
 import { useReducer, VueUseReducer } from "vue-use-reducer";
 import { Todo } from "@/types/models";
 
-interface TodoState {
+type TodoState = {
   todos: Todo[];
-}
+};
 
 type AddAction = {
   type: "add";

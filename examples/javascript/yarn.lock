@@ -4787,11 +4787,6 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash.clonedeepwith@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.clonedeepwith/-/lodash.clonedeepwith-4.5.0.tgz#6ee30573a03a1a60d670a62ef33c10cf1afdbdd4"
-  integrity sha1-buMFc6A6GmDWcKYu8zwQzxr9vdQ=
-
 lodash.defaultsdeep@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.0.tgz#bec1024f85b1bd96cbea405b23c14ad6443a6f81"
@@ -7878,12 +7873,11 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue-use-reducer@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vue-use-reducer/-/vue-use-reducer-1.0.1.tgz#b4d3dc86b4dea8a72b09f89c03de6fce8f135f18"
-  integrity sha512-8MId/n/GjW+882th8BSfRMJsyyuV4IdCI++c2eS6eWyvbyvfAPvJEZ8qxACAhPfRWEQ8i3Z/Kr/5L3/NVRSlbg==
+vue-use-reducer@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-use-reducer/-/vue-use-reducer-1.0.2.tgz#8043bfb10b59e5eb2333d5281f8b8ea63f990265"
+  integrity sha512-53ZlLzuMqRgYLsWYyx3URph+03idixoa7RUBuy+ATLPJCSaq3qnpvFko5cA4cinfwxUfvo682WqrbVj6e65tLw==
   dependencies:
-    lodash.clonedeepwith "^4.5.0"
     vue "^2.6.0"
 
 vue@^2.6.0, vue@^2.6.10:

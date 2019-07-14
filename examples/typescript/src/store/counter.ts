@@ -1,11 +1,11 @@
 import { useReducer, VueUseReducer } from "vue-use-reducer";
-export interface CounterState extends VueUseReducer.State {
+export type CounterState = {
   count: number;
 }
 
 type ActionTypes = "increment" | "decrement";
 
-export interface CounterAction extends VueUseReducer.Action {
+export type CounterAction = {
   type: ActionTypes;
 }
 
