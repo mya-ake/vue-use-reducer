@@ -8,7 +8,7 @@ type isPrimitive<T> = T extends Unwrap<T> ? T : never;
 export type DeepReadonly<T> = {
   readonly [P in keyof T]: T[P] extends isPrimitive<T[P]>
     ? T[P]
-    : DeepReadonly<T[P]>
+    : DeepReadonly<T[P]>;
 };
 
 export namespace VueUseReducer {
