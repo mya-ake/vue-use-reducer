@@ -2,6 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/vue-use-reducer.svg)](https://badge.fury.io/js/vue-use-reducer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+![CI Status](https://github.com/mya-ake/vue-use-reducer/workflows/Main%20Workflow/badge.svg)
 
  Inspired by useReducer of React Hooks.
 
