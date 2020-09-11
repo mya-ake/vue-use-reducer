@@ -21,7 +21,7 @@ Usage is the same as useReducer of React Hooks.
 ```js
 import { useReducer } from "vue-use-reducer";
 
-const initailState = {
+const initialState = {
   count: 0
 };
 
@@ -40,7 +40,7 @@ const reducer = (state, action) => {
   }
 };
 
-const [state, dispatch] = useReducer(reducer, initailState);
+const [state, dispatch] = useReducer(reducer, initialState);
 
 export const counterState = state;
 export const counterDispatch = dispatch;
