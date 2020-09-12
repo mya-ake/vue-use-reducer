@@ -18,18 +18,15 @@ describe('UsersComponent', () => {
   });
 
   describe('mount', () => {
-    it('mountable', () => {
-      expect(wrapper.isVueInstance()).toBe(true);
-    });
-
     it('users is none', () => {
       expect(userListWrapper.findAll('li')).toHaveLength(0);
     });
   });
 
   describe('action', () => {
-    it('add', () => {
+    it('add', async () => {
       wrapper.vm.add();
+      await Vue.nextTick();
       const firstLiWrapper = userListWrapper.find('li');
       const idWrapper = firstLiWrapper.find('.id');
       const nameWrapper = firstLiWrapper.find('.name');
@@ -41,9 +38,10 @@ describe('UsersComponent', () => {
       expect(emailWrapper.text()).toBe('test@example.com');
     });
 
-    it('update user name', () => {
+    it('update user name', async () => {
       wrapper.vm.add();
       wrapper.vm.updateName();
+      await Vue.nextTick();
 
       const firstLiWrapper = userListWrapper.find('li');
       const idWrapper = firstLiWrapper.find('.id');

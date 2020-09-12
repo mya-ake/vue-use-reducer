@@ -3,7 +3,7 @@ import { uglify } from 'rollup-plugin-uglify';
 
 const format = process.env.BUILD_FORMAT;
 
-const fileName = (format => {
+const fileName = ((format) => {
   switch (format) {
     case 'cjs':
       return 'index.common.js';

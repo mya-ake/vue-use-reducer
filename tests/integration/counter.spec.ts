@@ -18,33 +18,32 @@ describe('CounterComponent', () => {
   });
 
   describe('mount', () => {
-    it('mountable', () => {
-      expect(wrapper.isVueInstance()).toBe(true);
-    });
-
     it('count is 0', () => {
       expect(countTextWrapper.text()).toBe('0');
     });
   });
 
   describe('evnets', () => {
-    it('increment', () => {
+    it('increment', async () => {
       const button = wrapper.find('#button-increment');
       button.trigger('click');
+      await Vue.nextTick();
       expect(countTextWrapper.text()).toBe('1');
     });
 
-    it('decrement', () => {
+    it('decrement', async () => {
       const button = wrapper.find('#button-decrement');
       button.trigger('click');
+      await Vue.nextTick();
       expect(countTextWrapper.text()).toBe('-1');
     });
 
-    it('increment, decrement', () => {
+    it('increment, decrement', async () => {
       const incrementButton = wrapper.find('#button-increment');
       const decrementButton = wrapper.find('#button-decrement');
       incrementButton.trigger('click');
       decrementButton.trigger('click');
+      await Vue.nextTick();
       expect(countTextWrapper.text()).toBe('0');
     });
   });

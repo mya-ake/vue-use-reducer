@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ![CI Status](https://github.com/mya-ake/vue-use-reducer/workflows/Main%20Workflow/badge.svg)
 
- Inspired by useReducer of React Hooks.
+Inspired by useReducer of React Hooks.
 
 ## Install
 
@@ -19,23 +19,23 @@ Usage is the same as useReducer of React Hooks.
 ### store
 
 ```js
-import { useReducer } from "vue-use-reducer";
+import { useReducer } from 'vue-use-reducer';
 
 const initialState = {
-  count: 0
+  count: 0,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "increment":
+    case 'increment':
       return {
         ...state,
-        count: state.count + 1
+        count: state.count + 1,
       };
-    case "decrement":
+    case 'decrement':
       return {
         ...state,
-        count: state.count - 1
+        count: state.count - 1,
       };
   }
 };
@@ -64,25 +64,25 @@ export const counterDispatch = dispatch;
 </template>
 
 <script>
-import { counterState, counterDispatch } from "@/store/counter";
+  import { counterState, counterDispatch } from '@/store/counter';
 
-export default {
-  computed: {
-    count() {
-      return counterState.count;
-    }
-  },
-
-  methods: {
-    increment() {
-      counterDispatch({ type: "increment" });
+  export default {
+    computed: {
+      count() {
+        return counterState.count;
+      },
     },
 
-    decrement() {
-      counterDispatch({ type: "decrement" });
-    }
-  }
-};
+    methods: {
+      increment() {
+        counterDispatch({ type: 'increment' });
+      },
+
+      decrement() {
+        counterDispatch({ type: 'decrement' });
+      },
+    },
+  };
 </script>
 ```
 
