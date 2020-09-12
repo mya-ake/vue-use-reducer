@@ -19,8 +19,8 @@ jobs:
           node-version: 12.10.0
       - name: Intall
         run: yarn install --frozen-lockfile
-      - name: Lint
-        run: yarn lint
+      - name: Check format
+        run: yarn format:check
       - name: Test
         run: yarn test
       - name: Build
