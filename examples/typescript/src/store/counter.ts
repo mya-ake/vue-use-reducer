@@ -1,32 +1,32 @@
-import { useReducer, VueUseReducer } from "vue-use-reducer";
+import { useReducer, VueUseReducer } from 'vue-use-reducer';
 export type CounterState = {
   count: number;
-}
+};
 
-type ActionTypes = "increment" | "decrement";
+type ActionTypes = 'increment' | 'decrement';
 
 export type CounterAction = {
   type: ActionTypes;
-}
+};
 
 const initailState: CounterState = {
-  count: 0
+  count: 0,
 };
 
 const reducer: VueUseReducer.Reducer<CounterState, CounterAction> = (
   state,
-  action
+  action,
 ) => {
   switch (action.type) {
-    case "increment":
+    case 'increment':
       return {
         ...state,
-        count: state.count + 1
+        count: state.count + 1,
       };
-    case "decrement":
+    case 'decrement':
       return {
         ...state,
-        count: state.count - 1
+        count: state.count - 1,
       };
   }
 };
