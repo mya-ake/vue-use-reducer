@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { shallowMount, Wrapper } from '@vue/test-utils';
 
 import { createListStore } from '@fixtures/store/list';
@@ -14,10 +15,6 @@ describe('ListComponent', () => {
   });
 
   describe('mount', () => {
-    it('mountable', () => {
-      expect(wrapper.isVueInstance()).toBe(true);
-    });
-
     it('count is 0', () => {
       const listItemWrapper = wrapper.findAll('li');
       expect(listItemWrapper).toHaveLength(0);
@@ -25,17 +22,19 @@ describe('ListComponent', () => {
   });
 
   describe('action', () => {
-    it('push', () => {
+    it('push', async () => {
       wrapper.vm.push('test');
+      await Vue.nextTick();
       const listItemWrapper = wrapper.findAll('li');
       expect(listItemWrapper).toHaveLength(1);
       expect(listItemWrapper.at(0).text()).toBe('test');
     });
 
-    it('pop', () => {
+    it('pop', async () => {
       wrapper.vm.push('test1');
       wrapper.vm.push('test2');
       wrapper.vm.pop();
+      await Vue.nextTick();
       const listItemWrapper = wrapper.findAll('li');
       expect(listItemWrapper).toHaveLength(1);
       expect(listItemWrapper.at(0).text()).toBe('test1');
