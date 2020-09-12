@@ -13,32 +13,32 @@
 </template>
 
 <script>
-import { counterState, counterDispatch } from "@/store/counter";
+import { counterState, counterDispatch } from '@/store/counter';
 
 export default {
-  name: "app",
+  name: 'app',
 
   computed: {
     count() {
       return counterState.count;
-    }
+    },
   },
 
   methods: {
     increment() {
-      counterDispatch({ type: "increment" });
+      counterDispatch({ type: 'increment' });
     },
 
     decrement() {
-      counterDispatch({ type: "decrement" });
-    }
-  }
+      counterDispatch({ type: 'decrement' });
+    },
+  },
 };
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
