@@ -1,22 +1,22 @@
-import { TodoDispath } from "@/store/todo";
-import { Todo } from "@/types/models";
+import { TodoDispath } from '@/store/todo';
+import { Todo } from '@/types/models';
 
 export const addTodo = (
   dispatch: TodoDispath,
-  { content }: { content: string }
+  { content }: { content: string },
 ) => {
   dispatch({
-    type: "add",
+    type: 'add',
     payload: {
       id: new Date().getTime().toString(),
-      content
-    }
+      content,
+    },
   });
 };
 
 export const toggleTodo = (dispatch: TodoDispath, todo: Todo) => {
   dispatch({
-    type: "setDone",
-    payload: { ...todo, done: !todo.done }
+    type: 'setDone',
+    payload: { ...todo, done: !todo.done },
   });
 };

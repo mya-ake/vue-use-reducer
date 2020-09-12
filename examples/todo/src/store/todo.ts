@@ -1,12 +1,12 @@
-import { useReducer, VueUseReducer } from "vue-use-reducer";
-import { Todo } from "@/types/models";
+import { useReducer, VueUseReducer } from 'vue-use-reducer';
+import { Todo } from '@/types/models';
 
 type TodoState = {
   todos: Todo[];
 };
 
 type AddAction = {
-  type: "add";
+  type: 'add';
   payload: {
     id: string;
     content: string;
@@ -14,7 +14,7 @@ type AddAction = {
 };
 
 type SetDoneAction = {
-  type: "setDone";
+  type: 'setDone';
   payload: {
     id: string;
     done: boolean;
@@ -24,29 +24,29 @@ type SetDoneAction = {
 type TodoAction = AddAction | SetDoneAction;
 
 const initialState: TodoState = {
-  todos: []
+  todos: [],
 };
 
 const reducer: VueUseReducer.Reducer<TodoState, TodoAction> = (
   state,
-  action
+  action,
 ) => {
   switch (action.type) {
-    case "add": {
+    case 'add': {
       const { payload } = action;
       return {
         ...state,
-        todos: state.todos.concat({ ...payload, done: false })
+        todos: state.todos.concat({ ...payload, done: false }),
       };
     }
-    case "setDone": {
+    case 'setDone': {
       const { payload } = action;
       const { id, done } = payload;
       return {
         ...state,
         todos: state.todos.map(todo =>
-          todo.id === id ? { ...todo, done } : { ...todo }
-        )
+          todo.id === id ? { ...todo, done } : { ...todo },
+        ),
       };
     }
   }

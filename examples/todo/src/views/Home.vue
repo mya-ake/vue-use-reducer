@@ -28,21 +28,21 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { addTodo, toggleTodo } from "@/services/todo";
-import { todoState, todoDispatch } from "@/store/todo";
-import { Todo } from "@/types/models";
+import Vue from 'vue';
+import { addTodo, toggleTodo } from '@/services/todo';
+import { todoState, todoDispatch } from '@/store/todo';
+import { Todo } from '@/types/models';
 
 const initializeFormValue = () => ({
-  content: ""
+  content: '',
 });
 
 export default Vue.extend({
-  name: "Home",
+  name: 'Home',
 
   data() {
     return {
-      form: initializeFormValue()
+      form: initializeFormValue(),
     };
   },
 
@@ -53,7 +53,7 @@ export default Vue.extend({
 
     doneCount() {
       return todoState.todos.filter(todo => todo.done).length;
-    }
+    },
   },
 
   methods: {
@@ -72,8 +72,8 @@ export default Vue.extend({
 
     clearForm() {
       this.form = initializeFormValue();
-    }
-  }
+    },
+  },
 });
 </script>
 
