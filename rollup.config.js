@@ -20,5 +20,10 @@ export default {
     format,
   },
 
-  plugins: [typescript(), terser()],
+  plugins: [
+    typescript({
+      tsconfig: 'tsconfig.build.json',
+    }),
+    terser(),
+  ],
 };
