@@ -40,7 +40,7 @@ $ npm i vue-use-reducer@next @vue/composition-api
 ```
 
 > note: vue-use-reducer has no functional difference between v1 and v2.  
-> Only the type is different. In v2, the nameapce that was in v1 is gone.
+> Only the type is different. In v2, the namespace that was in v1 is gone.
 > See [examples](https://github.com/mya-ake/vue-use-reducer/tree/master/examples) for details
 
 ## Usage
