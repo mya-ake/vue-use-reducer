@@ -4,28 +4,28 @@ import type { DefineComponent } from 'vue-demi';
 import type { ReturnValue } from '@/index';
 
 export type UsersComponent = DefineComponent<
-void,
-void,
-void,
-{
-  users: () => User[]
-},
-{
-  add(): void,
-  updateName(): void,
-},
-any,
-any,
-any,
-any,
-any,
-any
+  void,
+  void,
+  void,
+  {
+    users: () => User[];
+  },
+  {
+    add(): void;
+    updateName(): void;
+  },
+  any,
+  any,
+  any,
+  any,
+  any,
+  any
 >;
 
-export const createUsersComponent = ([
-  state,
-  dispatch,
-]: ReturnValue<UsersState, UsersAction>) => {
+export const createUsersComponent = ([state, dispatch]: ReturnValue<
+  UsersState,
+  UsersAction
+>) => {
   return defineComponent({
     template: `
     <div>
@@ -49,9 +49,9 @@ export const createUsersComponent = ([
             id: new Date().getTime().toString(),
             name: 'test name',
             email: 'test@example.com',
-          }
-        })
-      }
+          },
+        });
+      };
 
       const updateName = () => {
         dispatch({
@@ -61,14 +61,13 @@ export const createUsersComponent = ([
             name: 'updated test name',
           },
         });
-      }
+      };
 
       return {
         users,
         add,
         updateName,
-      }
+      };
     },
-
   });
 };

@@ -1,5 +1,5 @@
 import { useReducer } from '@/index';
-import type { Reducer } from '@/index'
+import type { Reducer } from '@/index';
 
 export type User = {
   id: string;
@@ -30,10 +30,7 @@ const createInitialState = (): UsersState => ({
   users: [],
 });
 
-const reducer: Reducer<UsersState, UsersAction> = (
-  state,
-  action,
-) => {
+const reducer: Reducer<UsersState, UsersAction> = (state, action) => {
   switch (action.type) {
     case 'ADD': {
       const { payload: user } = action;
