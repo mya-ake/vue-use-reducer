@@ -1,21 +1,29 @@
-import Vue, { VueConstructor } from 'vue';
-import { VueUseReducer } from '@/index';
+import { defineComponent, computed } from 'vue-demi';
 import { ListState, ListAction } from '@fixtures/store/list';
+import type { DefineComponent } from 'vue-demi';
+import type { ReturnValue } from '@/index';
 
-export type ListComponent = {
-  list: readonly string[];
-  push(text: string): void;
-  pop(): void;
-} & Record<never, any> &
-  Vue;
+export type ListComponent = DefineComponent<
+  void,
+  void,
+  void,
+  {
+    list: () => string[];
+  },
+  { push(text: string): void; pop(): void },
+  any,
+  any,
+  any,
+  any,
+  any,
+  any
+>;
 
-export const createListComponent = ([
-  state,
-  dispatch,
-]: VueUseReducer.ReturnValue<ListState, ListAction>): VueConstructor<
-  ListComponent
-> => {
-  return Vue.extend({
+export const createListComponent = ([state, dispatch]: ReturnValue<
+  ListState,
+  ListAction
+>) => {
+  return defineComponent({
     template: `
   <div>
     <ul>
@@ -23,20 +31,21 @@ export const createListComponent = ([
     </ul>
   </div>
   `,
-    computed: {
-      list() {
-        return state.list;
-      },
-    },
+    setup() {
+      const list = computed(() => state.list);
 
-    methods: {
-      push(text: string) {
+      const push = (text: string) => {
         dispatch({ type: 'PUSH', payload: { text } });
-      },
-
-      pop() {
+      };
+      const pop = () => {
         dispatch({ type: 'POP' });
-      },
+      };
+
+      return {
+        list,
+        push,
+        pop,
+      };
     },
   });
 };

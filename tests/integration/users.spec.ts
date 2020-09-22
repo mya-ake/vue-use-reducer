@@ -1,15 +1,16 @@
-import Vue from 'vue';
-import { shallowMount, Wrapper } from '@vue/test-utils';
+import { nextTick } from 'vue-demi';
+import { shallowMount } from '@vue/test-utils';
 
 import { createUsersStore } from '@fixtures/store/users';
 import {
   createUsersComponent,
   UsersComponent as UsersComponentType,
 } from '@fixtures/components/UsersComponent';
+import type { VueWrapper, DOMWrapper } from '@vue/test-utils';
 
 describe('UsersComponent', () => {
-  let wrapper: Wrapper<UsersComponentType>;
-  let userListWrapper: Wrapper<Vue>;
+  let wrapper: VueWrapper<UsersComponentType>;
+  let userListWrapper: DOMWrapper<Element>;
 
   beforeEach(() => {
     const UsersComponent = createUsersComponent(createUsersStore());
@@ -26,7 +27,7 @@ describe('UsersComponent', () => {
   describe('action', () => {
     it('add', async () => {
       wrapper.vm.add();
-      await Vue.nextTick();
+      await nextTick();
       const firstLiWrapper = userListWrapper.find('li');
       const idWrapper = firstLiWrapper.find('.id');
       const nameWrapper = firstLiWrapper.find('.name');
@@ -41,7 +42,7 @@ describe('UsersComponent', () => {
     it('update user name', async () => {
       wrapper.vm.add();
       wrapper.vm.updateName();
-      await Vue.nextTick();
+      await nextTick();
 
       const firstLiWrapper = userListWrapper.find('li');
       const idWrapper = firstLiWrapper.find('.id');

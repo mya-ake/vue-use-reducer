@@ -1,21 +1,30 @@
-import Vue, { VueConstructor } from 'vue';
-import { VueUseReducer } from '@/index';
+import { defineComponent, computed } from 'vue-demi';
 import { CounterState, CounterAction } from '@fixtures/store/counter';
+import type { DefineComponent } from 'vue-demi';
+import type { ReturnValue } from '@/index';
 
-export type CounterComponent = {
-  count: number;
-  increment(): void;
-  decrement(): void;
-} & Record<never, any> &
-  Vue;
+export type CounterComponent = DefineComponent<
+  void,
+  void,
+  void,
+  { count: () => number },
+  {
+    increment(): void;
+    decrement(): void;
+  },
+  any,
+  any,
+  any,
+  any,
+  any,
+  any
+>;
 
-export const createCounterComponent = ([
-  state,
-  dispatch,
-]: VueUseReducer.ReturnValue<CounterState, CounterAction>): VueConstructor<
-  CounterComponent
-> => {
-  return Vue.extend({
+export const createCounterComponent = ([state, dispatch]: ReturnValue<
+  CounterState,
+  CounterAction
+>) => {
+  return defineComponent({
     template: `
   <div>
     <span id="count">{{ count }}</span>
@@ -23,20 +32,21 @@ export const createCounterComponent = ([
     <button id="button-decrement" type="button" @click="decrement">decrement</button>
   </div>
   `,
-    computed: {
-      count(): number {
-        return state.count;
-      },
-    },
+    setup() {
+      const count = computed(() => state.count);
 
-    methods: {
-      increment() {
+      const increment = () => {
         dispatch({ type: 'INCREMENT' });
-      },
-
-      decrement() {
+      };
+      const decrement = () => {
         dispatch({ type: 'DECREMENT' });
-      },
+      };
+
+      return {
+        count,
+        increment,
+        decrement,
+      };
     },
   });
 };

@@ -1,4 +1,5 @@
-import { useReducer, VueUseReducer } from '@/index';
+import { useReducer } from '@/index';
+import type { Reducer } from '@/index'
 
 export type User = {
   id: string;
@@ -29,7 +30,7 @@ const createInitialState = (): UsersState => ({
   users: [],
 });
 
-const reducer: VueUseReducer.Reducer<UsersState, UsersAction> = (
+const reducer: Reducer<UsersState, UsersAction> = (
   state,
   action,
 ) => {

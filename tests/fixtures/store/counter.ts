@@ -1,4 +1,5 @@
-import { useReducer, VueUseReducer } from '@/index';
+import { useReducer } from '@/index';
+import type { Reducer } from '@/index';
 
 export type CounterState = {
   count: number;
@@ -14,10 +15,7 @@ const createInitailState = (): CounterState => ({
   count: 0,
 });
 
-const reducer: VueUseReducer.Reducer<CounterState, CounterAction> = (
-  state,
-  action,
-) => {
+const reducer: Reducer<CounterState, CounterAction> = (state, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return {
