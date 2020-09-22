@@ -11,14 +11,17 @@ export type DeepReadonly<T> = {
     : DeepReadonly<T[P]>;
 };
 
-export namespace VueUseReducer {
-  export interface State {
-    [key: string]: unknown;
-  }
-  export interface Action {
-    type: string;
-  }
-  export type Dispatch<A> = (action: A) => void;
-  export type Reducer<S, A> = (state: S, action: A) => S;
-  export type ReturnValue<S, A> = [DeepReadonly<S>, VueUseReducer.Dispatch<A>];
-}
+export type State = Record<string, unknown>;
+export type Action = {
+  type: string;
+};
+
+export type Dispatch<A extends Action> = (action: A) => void;
+export type Reducer<S extends State, A extends Action> = (
+  state: S,
+  action: A,
+) => S;
+export type ReturnValue<S extends State, A extends Action> = [
+  DeepReadonly<S>,
+  Dispatch<A>,
+];

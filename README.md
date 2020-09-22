@@ -8,9 +8,40 @@ Inspired by useReducer of React Hooks.
 
 ## Install
 
+### for Vue v3
+
+The following command installs vue-use-reducer v2.
+
+```bash
+$ yarn add vue-use-reducer@next
+// or
+$ npm i vue-use-reducer@next
+```
+
+### for Vue v2
+
+The following command installs vue-use-reducer v1.
+
 ```bash
 $ yarn add vue-use-reducer
+// or
+$ npm i vue-use-reducer
 ```
+
+---
+
+You can install v2 using the following command.  
+When using with vue v2 it depends on the [@vue/composition-api](https://github.com/vuejs/composition-api).
+
+```bash
+$ yarn add vue-use-reducer@next @vue/composition-api
+// or
+$ npm i vue-use-reducer@next @vue/composition-api
+```
+
+> note: vue-use-reducer has no functional difference between v1 and v2.  
+> Only the type is different. In v2, the nameapce that was in v1 is gone.
+> See [examples](https://github.com/mya-ake/vue-use-reducer/tree/master/examples) for details
 
 ## Usage
 

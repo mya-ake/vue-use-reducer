@@ -1,15 +1,16 @@
-import Vue from 'vue';
-import { shallowMount, Wrapper } from '@vue/test-utils';
+import { nextTick } from 'vue-demi';
+import { shallowMount } from '@vue/test-utils';
 
 import { createCounterStore } from '@fixtures/store/counter';
 import {
   createCounterComponent,
   CounterComponent as CounterComponentType,
 } from '@fixtures/components/CounterComponent';
+import type { VueWrapper, DOMWrapper } from '@vue/test-utils';
 
 describe('CounterComponent', () => {
-  let wrapper: Wrapper<CounterComponentType>;
-  let countTextWrapper: Wrapper<Vue>;
+  let wrapper: VueWrapper<CounterComponentType>;
+  let countTextWrapper: DOMWrapper<Element>;
 
   beforeEach(() => {
     const CounterComponent = createCounterComponent(createCounterStore());
@@ -27,14 +28,14 @@ describe('CounterComponent', () => {
     it('increment', async () => {
       const button = wrapper.find('#button-increment');
       button.trigger('click');
-      await Vue.nextTick();
+      await nextTick();
       expect(countTextWrapper.text()).toBe('1');
     });
 
     it('decrement', async () => {
       const button = wrapper.find('#button-decrement');
       button.trigger('click');
-      await Vue.nextTick();
+      await nextTick();
       expect(countTextWrapper.text()).toBe('-1');
     });
 
@@ -43,7 +44,7 @@ describe('CounterComponent', () => {
       const decrementButton = wrapper.find('#button-decrement');
       incrementButton.trigger('click');
       decrementButton.trigger('click');
-      await Vue.nextTick();
+      await nextTick();
       expect(countTextWrapper.text()).toBe('0');
     });
   });

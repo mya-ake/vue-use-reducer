@@ -1,21 +1,32 @@
-import Vue, { VueConstructor } from 'vue';
-import { VueUseReducer } from '@/index';
+import { defineComponent, computed } from 'vue-demi';
 import { UsersState, UsersAction, User } from '@fixtures//store/users';
+import type { DefineComponent } from 'vue-demi';
+import type { ReturnValue } from '@/index';
 
-export type UsersComponent = {
-  users: readonly User[];
-  add(): void;
-  updateName(): void;
-} & Record<never, any> &
-  Vue;
+export type UsersComponent = DefineComponent<
+  void,
+  void,
+  void,
+  {
+    users: () => User[];
+  },
+  {
+    add(): void;
+    updateName(): void;
+  },
+  any,
+  any,
+  any,
+  any,
+  any,
+  any
+>;
 
-export const createUsersComponent = ([
-  state,
-  dispatch,
-]: VueUseReducer.ReturnValue<UsersState, UsersAction>): VueConstructor<
-  UsersComponent
-> => {
-  return Vue.extend({
+export const createUsersComponent = ([state, dispatch]: ReturnValue<
+  UsersState,
+  UsersAction
+>) => {
+  return defineComponent({
     template: `
     <div>
       <ul>
@@ -28,14 +39,10 @@ export const createUsersComponent = ([
     </div>
     `,
 
-    computed: {
-      users() {
-        return state.users;
-      },
-    },
+    setup() {
+      const users = computed(() => state.users);
 
-    methods: {
-      add() {
+      const add = () => {
         dispatch({
           type: 'ADD',
           payload: {
@@ -44,9 +51,9 @@ export const createUsersComponent = ([
             email: 'test@example.com',
           },
         });
-      },
+      };
 
-      updateName() {
+      const updateName = () => {
         dispatch({
           type: 'UPDATE_USER_NAME',
           payload: {
@@ -54,7 +61,13 @@ export const createUsersComponent = ([
             name: 'updated test name',
           },
         });
-      },
+      };
+
+      return {
+        users,
+        add,
+        updateName,
+      };
     },
   });
 };

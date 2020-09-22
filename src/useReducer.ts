@@ -1,19 +1,23 @@
-import Vue from 'vue';
-import { VueUseReducer, DeepReadonly } from './type';
+import { reactive, toRaw } from 'vue-demi';
+import type {
+  State,
+  Action,
+  Dispatch,
+  Reducer,
+  ReturnValue,
+  DeepReadonly,
+} from './type';
 
-export function useReducer<
-  S extends VueUseReducer.State,
-  A extends VueUseReducer.Action
->(
-  reducer: VueUseReducer.Reducer<S, A>,
+export const useReducer = <S extends State, A extends Action>(
+  reducer: Reducer<S, A>,
   initialState: S,
   initialAction?: A,
-): VueUseReducer.ReturnValue<S, A> {
-  const state = Vue.observable(initialState);
-  const dispatch: VueUseReducer.Dispatch<A> = (action) => {
-    const newState = reducer({ ...state }, action);
+): ReturnValue<S, A> => {
+  const state = reactive(initialState);
+  const dispatch: Dispatch<A> = (action) => {
+    const newState = reducer(toRaw(state) as S, action);
     Object.keys(newState).forEach((key: keyof S) => {
-      state[key] = newState[key];
+      (state as S)[key] = newState[key];
     });
   };
 
@@ -21,4 +25,4 @@ export function useReducer<
     dispatch(initialAction);
   }
   return [state as DeepReadonly<S>, dispatch];
-}
+};

@@ -1,4 +1,5 @@
-import { useReducer, VueUseReducer } from '@/index';
+import { useReducer } from '@/index';
+import type { Reducer } from '@/index';
 
 export type ListState = {
   list: string[];
@@ -17,10 +18,7 @@ const createInitialState = (): ListState => ({
   list: [],
 });
 
-const reducer: VueUseReducer.Reducer<ListState, ListAction> = (
-  state,
-  action,
-) => {
+const reducer: Reducer<ListState, ListAction> = (state, action) => {
   switch (action.type) {
     case 'PUSH': {
       const { payload } = action;
